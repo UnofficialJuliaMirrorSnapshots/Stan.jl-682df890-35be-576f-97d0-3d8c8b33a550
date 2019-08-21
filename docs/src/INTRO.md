@@ -8,11 +8,30 @@
 
 [Stan.jl](https://github.com/StanJulia/Stan.jl) wraps CmdStan and captures the samples for further processing.
 
-## A few other MCMC options in Julia
+## Table of contents
 
-[Mamba.jl](http://mambajl.readthedocs.io/en/latest/) and [Klara.jl](http://klarajl.readthedocs.io/en/latest/) are other Julia packages to run MCMC models (in pure Julia!).
+### Examples
 
-[Jags.jl](https://github.com/StanJulia/Jags.jl) is another option, but like CmdStan/Stan.jl, Jags runs as an external program.
+1. ARM kids example
+2. Bernoulli
+...
+
+### Examples showing cmdstan methods
+
+1. Diagnose
+2. Generate_Quantities
+3. Optimize
+4. Parse_and_Interpolate_Example
+5. Variational
+6. Nuts sampling diagnose using the diagnose binary
+...
+
+### Examples added to test special cases
+
+1. Init using a single Dict
+2. Init with an Array{Dict, 1}
+3. Init using a .R file
+...
 
 ## References
 

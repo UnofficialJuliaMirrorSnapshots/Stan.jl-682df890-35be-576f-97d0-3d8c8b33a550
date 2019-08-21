@@ -1,45 +1,40 @@
-# Top level test script for Stan.jl
-using Stan, Test
+# Test Stan.jl examples.
 
-println("Running tests for Stan-j0.7-v3.5.0:")
+using Test
 
-code_tests = ["test_env.jl",              
-              "test_utilities.jl",
-              "test_cmdtype.jl"]
+examples = [
 
-# Run execution_tests only if CmdStan is installed and CMDSTAN_HOME is set correctly.
-execution_tests = [
-  "test_bernoulli.jl",
-  "test_bernoulli_optimize.jl",
-  "test_bernoulli_diagnose.jl",
-  #"test_bernoulli_variational.jl",
-  "test_bernoulliinittheta.jl",
-  "test_bernoulliscalar.jl",
-  "test_binomial.jl",
-  "test_binormal.jl",
-  "test_schools8.jl",
-  "test_dyes.jl",
-  "test_kidscore.jl"
+  "Examples/ARM/Ch03/Kid/kidscore.jl",
+  "Examples/Bernoulli/bernoulli.jl",
+  "Examples/Binomial/binomial.jl",
+  "Examples/Binormal/binormal.jl",
+  "Examples/Dyes/dyes.jl",
+  "Examples/EightSchools/schools8.jl",
+  
+  "Examples_Stan_Methods/Diagnose/diagnose.jl",
+  "Examples_Stan_Methods/Generate_Quantities/generate_quantities.jl",
+  "Examples_Stan_Methods/Optimize/optimize.jl",
+  "Examples_Stan_Methods/Parse_and_Interpolate/parse.jl",
+  "Examples_Stan_Methods/Variational/variational.jl",
+  
+  "Examples_Test_Cases/Diagnostics/diagnostics.jl",
+  "Examples_Test_Cases/InitThetaDict/init_dict.jl",
+  "Examples_Test_Cases/InitThetaDictArray/init_dict_array.jl",
+  "Examples_Test_Cases/InitThetaFile/init_file.jl",
+  "Examples_Test_Cases/NamedArray/namedarray.jl",
+  "Examples_Test_Cases/ScalarObs/scalar.jl",
+  "Examples_Test_Cases/ZeroLengthArray/zerolengtharray.jl",
+ 
 ]
 
-if CMDSTAN_HOME != ""
-  println("CMDSTAN_HOME set. Try to run tests.")
-  @testset "Stan.jl" begin
-    for my_test in code_tests
-        println("\n\n\n  * $(my_test) *")
-        include(my_test)
-    end
-    
-    for my_test in execution_tests
-        println("\n\n  * $(my_test) *\n")
-        include(my_test)
-    end
-    
-    println("\n")
-  end 
-else
-  println("\n\nCMDSTAN_HOME not set or found.")
-  println("Skipping all tests that depend on CmdStan!\n")
-end
+@testset "Stan.jl v6.0" begin
 
-println("\n")
+  for example in examples
+      #println("\n  * $(example) *")
+      @testset "$(example)" begin
+        include(example)
+      end
+      #println("\n * $(example) done! *")
+  end
+
+end
